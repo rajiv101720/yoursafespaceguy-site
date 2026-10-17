@@ -412,6 +412,39 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
 .wall-head .count-big .sealed{display:block;font-family:var(--sans);font-size:14px;color:var(--muted);margin-top:4px}
 .wall-loading{column-span:all;text-align:center;padding:10px 0 20px}.wall-loading .hand{font-size:28px;margin:0}
 .lightbox iframe{width:min(900px,92vw);height:min(80vh,calc(92vw * 1.6));aspect-ratio:auto}
+
+/* ===== v3: countdown + closed mode + compact wall ===== */
+body.closed [data-open]{display:none!important}
+body:not(.closed) [data-closed]{display:none!important}
+.countdown{display:inline-flex;align-items:center;gap:10px;margin:18px 0 0;padding:8px 14px 8px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.countdown b{font-variant-numeric:tabular-nums;color:var(--red);font-weight:700;letter-spacing:.02em}
+.countdown.light{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3);color:#FFE7E1}
+.countdown.light b{color:var(--sun)}
+.cd-dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(195,38,46,.6);animation:pulse 1.6s infinite}
+.countdown.light .cd-dot{background:var(--sun)}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(195,38,46,0)}100%{box-shadow:0 0 0 0 rgba(195,38,46,0)}}
+.closed-card{background:var(--card);color:var(--ink);border-radius:18px;padding:clamp(28px,5vw,48px);text-align:center;box-shadow:0 30px 60px -20px rgba(60,0,0,.55);position:relative;overflow:hidden}
+.closed-card .hand{font-family:var(--hand);font-size:52px;line-height:1;margin:6px 0 10px}
+.closed-card p{color:var(--ink-2);max-width:38ch;margin:0 auto 20px}
+.closed-card .cc-sf{width:70px;height:70px;display:block;margin:0 auto}
+/* compact wall */
+.wall-more{column-span:all;text-align:center;margin:8px 0 0}
+.wall-more .btn{margin:0 auto}
+@media (max-width:600px){
+  .wall{columns:auto;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:4px 16px 18px;scrollbar-width:none}
+  .wall::-webkit-scrollbar{display:none}
+  .wall .pc{flex:0 0 84%;margin:0;scroll-snap-align:center;display:flex;flex-direction:column;max-height:470px}
+  .wall .pc .msg{display:-webkit-box;-webkit-line-clamp:9;-webkit-box-orient:vertical;overflow:hidden}
+  .wall .pc .att img{max-height:200px;object-fit:cover}
+  .wall .pc .from{margin-top:auto}
+  .wall .wall-empty,.wall .wall-loading,.wall .skel{flex:0 0 100%}
+  .wall-more{display:none}
+  .wall-swipe{display:flex!important}
+}
+.wall-swipe{display:none;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);margin:-6px 0 10px}
+.wall-swipe b{color:var(--ink);font-variant-numeric:tabular-nums}
+.letter-modal{max-width:640px;width:100%;max-height:86vh;overflow:auto;background:var(--card);border-radius:12px;padding:26px 22px}
+.letter-modal .msg{white-space:pre-wrap;font-family:var(--serif);font-size:18px;line-height:1.55}
 </style>
 </head>
 <body>
@@ -444,7 +477,8 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
       <a class="l" href="#work">Work</a>
       <a class="l" href="#wall">The wall</a>
       <a class="l" href="#support">Support</a>
-      <a class="btn btn-red" href="#write">Write a letter</a>
+      <a class="btn btn-red" href="#write" data-open>Write a letter</a>
+      <a class="btn btn-red" href="#support" data-closed>Support my work</a>
     </nav>
   </div>
 </header>
@@ -455,15 +489,27 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
 <section class="hero">
   <div class="wrap grid">
     <div>
-      <span class="date-chip"><span class="dot">🌻</span> 17 October · Delhi</span>
-      <h1>Rajiv turns <span class="num">26.</span></h1>
-      <p class="lede">My new year starts on my birthday. Before it begins, I'd love one small thing from you: a letter.</p>
-      <p class="lede">A memory with me. Something you learnt this year. Something I should hear. Or just a hi. Anything you'd want me to carry into 26.</p>
-      <div class="cta">
-        <a class="btn btn-red" href="#write">Write me a letter <span aria-hidden="true">✉</span></a>
-        <a class="btn btn-ghost" href="#wall">Read the wall</a>
+      <span class="date-chip"><span class="dot">🌻</span> <span data-open>17 October · Delhi</span><span data-closed>Delhi · experience curator</span></span>
+      <div data-open>
+        <h1>Rajiv turns <span class="num">26.</span></h1>
+        <p class="lede">My new year starts on my birthday. Before it begins, I'd love one small thing from you: a letter.</p>
+        <p class="lede">A memory with me. Something you learnt this year. Something I should hear. Or just a hi. Anything you'd want me to carry into 26.</p>
+        <div class="cta">
+          <a class="btn btn-red" href="#write">Write me a letter <span aria-hidden="true">✉</span></a>
+          <a class="btn btn-ghost" href="#wall">Read the wall</a>
+        </div>
+        <p class="countdown"><span class="cd-dot"></span>Letterbox closes in <b class="cd">--:--:--</b></p>
+        <p class="note">Takes two minutes. You can tuck in a photo, a video or a voice note.</p>
       </div>
-      <p class="note">Takes two minutes. You can tuck in a photo, a video or a voice note.</p>
+      <div data-closed>
+        <h1>Hi, I'm <span class="num">Rajiv.</span></h1>
+        <p class="lede">I build spaces where people can be themselves, and the systems that help them get home safe.</p>
+        <p class="lede">I just turned 26, and <span class="total-letters">so many</span> of you wrote me letters. Thank you for showing up for me, the way you show up for everyone. ❤️‍🩹</p>
+        <div class="cta">
+          <a class="btn btn-red" href="#work">See my work</a>
+          <a class="btn btn-ghost" href="#wall">Read the letters</a>
+        </div>
+      </div>
     </div>
     <div class="stamp-zone" aria-hidden="true">
       <div class="bday-sticker" id="bday">It's my birthday!</div>
@@ -490,7 +536,7 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
   </div>
 </section>
 
-<div class="band-wrap"><div class="ribbon-band" aria-hidden="true"><div class="track"><span>26 today<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>showing up<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>chai at 2 AM<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>Delhi<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>sunflowers<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>strangers → friends<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>My Safe Space<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>rides home<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>new year starts now<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>write me a letter<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>26 today<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>showing up<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>chai at 2 AM<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>Delhi<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>sunflowers<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>strangers → friends<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>My Safe Space<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>rides home<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>new year starts now<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>write me a letter<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span></div></div></div>
+<div class="band-wrap"><div class="ribbon-band" aria-hidden="true"><div class="track"><span data-open-text="26 today" data-closed-text="26 and counting">26 today<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>showing up<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>chai at 2 AM<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>Delhi<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>sunflowers<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>strangers → friends<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>My Safe Space<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>rides home<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span data-open-text="new year starts now" data-closed-text="new year, new chapter">new year starts now<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span data-open-text="write me a letter" data-closed-text="thank you for the letters">write me a letter<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span data-open-text="26 today" data-closed-text="26 and counting">26 today<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>showing up<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>chai at 2 AM<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>Delhi<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>sunflowers<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>strangers → friends<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>My Safe Space<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>rides home<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span data-open-text="new year starts now" data-closed-text="new year, new chapter">new year starts now<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span data-open-text="write me a letter" data-closed-text="thank you for the letters">write me a letter<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span></div></div></div>
 
 
 <!-- ABOUT -->
@@ -702,9 +748,16 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
   <div class="wrap lb-grid">
     <div>
       <p class="kicker">The letterbox</p>
+      <div data-open>
       <h2 style="margin-top:12px">Write me a <em>letter.</em></h2>
       <p class="lede" style="margin-top:20px">You don't need to be a writer. One honest line is enough. I'll read every single one.</p>
-      <ul class="ideas">
+      <p class="countdown light"><span class="cd-dot"></span>Closes at 2 PM today · <b class="cd">--:--:--</b> left</p>
+      </div>
+      <div data-closed>
+      <h2 style="margin-top:12px">The letterbox is <em>closed.</em></h2>
+      <p class="lede" style="margin-top:20px">It closed at 2 PM on 18 October. <span class="total-letters">So many</span> letters came in. I'm reading every single one, slowly.</p>
+      </div>
+      <ul class="ideas" data-open>
         <li>A memory with me you still think about</li>
         <li>Something you learnt the hard way this year</li>
         <li>What I should keep doing, or stop doing</li>
@@ -721,7 +774,13 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
       </svg>
     </div>
 
-    <div class="letter" id="letterCard"><div class="letter-in">
+    <div class="closed-card" data-closed>
+      <svg viewBox="0 0 100 100" aria-hidden="true" class="cc-sf"><use href="#sunflower"/></svg>
+      <p class="hand">Thank you.</p>
+      <p>Every letter, voice note and photo reached me. My new year started with <b class="total-letters">all of you</b> showing up.</p>
+      <a class="btn btn-ghost" href="#wall">Read the letters</a>
+    </div>
+    <div class="letter" id="letterCard" data-open><div class="letter-in">
       <svg class="mini-stamp" viewBox="0 0 64 76" aria-hidden="true"><rect x="2" y="2" width="60" height="72" fill="#C3262E" stroke="#FFFBF3" stroke-width="3" stroke-dasharray="4 3"/><text x="10" y="22" font-family="Tiro Devanagari Hindi, serif" font-size="13" fill="#fff">राजीव</text><text x="54" y="64" text-anchor="end" font-family="Fraunces, serif" font-weight="700" font-size="20" fill="#F2B630">26</text></svg>
 
       <form id="form" novalidate>
@@ -794,6 +853,7 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
       </div>
       <p class="count-big" id="wallCount" aria-live="polite"></p>
     </div>
+    <div class="wall-swipe" id="wallSwipe" hidden><span>Swipe to read more →</span><b>1 / 1</b></div>
     <div class="wall" id="wallList"></div>
   </div>
 </section>
@@ -838,7 +898,7 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
   </div>
 </footer>
 
-<a class="mobile-cta" id="mcta" href="#write">✉ Write me a letter</a>
+<a class="mobile-cta" id="mcta" href="#write" data-open>✉ Write me a letter</a>
 
 <div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="Preview"><button class="close" id="lbClose" aria-label="Close">×</button><div id="lbBody"></div></div>
 
@@ -965,6 +1025,7 @@ const toB64 = blob => new Promise((res, rej) => { const r = new FileReader(); r.
 $("#form").addEventListener("submit", async e => {
   e.preventDefault();
   const err = $("#err"); err.textContent = "";
+  if (isClosed()) { applyClosed(); return; }
   const name = $("#name").value.trim(), message = $("#msg").value.trim();
   if (!message && !attachment) { err.textContent = "Write a few words (or tuck something in) first."; $("#msg").focus(); return; }
   if (!name) { err.textContent = "Add your name so I know who it's from."; $("#name").focus(); return; }
@@ -1006,18 +1067,36 @@ $("#shareBtn").addEventListener("click", async e => {
 });
 
 /* ===== v2 ===== */
-/* birthday sticker */
+/* countdown + closed mode */
+const CLOSE_AT = new Date("2026-10-18T14:00:00+05:30").getTime();
+function isClosed() { return Date.now() >= CLOSE_AT || /[?&]closed\b/.test(location.search); }
+function applyClosed() {
+  if (document.body.classList.contains("closed")) return;
+  document.body.classList.add("closed");
+  document.querySelectorAll("[data-closed-text]").forEach(el => { el.firstChild.textContent = el.dataset.closedText; });
+  const st = $("#bday"); if (st) st.textContent = "Thank you 🌻";
+  document.title = "Rajiv Choudhary · yoursafespaceguy";
+  const c = $("#mcta"); if (c) c.classList.remove("show");
+  const cnt = $("#wallCount b"); if (cnt) { const t = $("#wallCount"); t.innerHTML = t.innerHTML.replace(" and counting", ""); }
+}
 (() => {
-  const d = new Date(), m = d.getMonth(), day = d.getDate(), el = $("#bday"); if (!el) return;
-  if (m === 9 && day === 17) el.textContent = "It's my birthday!";
-  else if (m === 9 && day < 17) el.textContent = "Birthday soon!";
-  else el.textContent = "Still celebrating";
+  const st = $("#bday");
+  if (st) { const d = new Date(), m = d.getMonth(), day = d.getDate(); st.textContent = (m === 9 && day === 17) ? "It's my birthday!" : (m === 9 && day < 17) ? "Birthday soon!" : "Still celebrating"; }
+  const pad = n => String(n).padStart(2, "0");
+  const tick = () => {
+    if (isClosed()) { applyClosed(); return false; }
+    const s = Math.max(0, Math.floor((CLOSE_AT - Date.now()) / 1000));
+    const txt = `${pad(Math.floor(s / 3600))}:${pad(Math.floor(s % 3600 / 60))}:${pad(s % 60)}`;
+    document.querySelectorAll(".cd").forEach(el => el.textContent = txt);
+    return true;
+  };
+  if (tick()) { const iv = setInterval(() => { if (!tick()) clearInterval(iv); }, 1000); }
 })();
 /* mobile sticky CTA */
 (() => {
   const cta = $("#mcta"); if (!cta) return;
   const seen = {hero:true, write:false};
-  const upd = () => cta.classList.toggle("show", !seen.hero && !seen.write);
+  const upd = () => cta.classList.toggle("show", !seen.hero && !seen.write && !document.body.classList.contains("closed"));
   const ob = new IntersectionObserver(es => { es.forEach(e => { seen[e.target.dataset.k] = e.isIntersecting; }); upd(); }, {threshold:0});
   const h = document.querySelector(".hero .cta"), w = $("#write");
   if (h) { h.dataset.k = "hero"; ob.observe(h); }
@@ -1058,8 +1137,8 @@ function attachHTML(l) {
 function cardHTML(l, i) {
   const ig = l.ig ? `<a href="https://instagram.com/${encodeURIComponent(l.ig)}" target="_blank" rel="noopener">@${esc(l.ig)}</a>` : "";
   const sub = [esc(l.relation), ig].filter(Boolean).join(" · ");
-  const long = (l.message || "").length > 420;
-  return `<article class="pc" style="animation-delay:${Math.min(i,10)*40}ms">
+  const long = (l.message || "").length > 300;
+  return `<article class="pc" data-id="${esc(l.id)}" style="animation-delay:${Math.min(i,10)*40}ms">
     <div class="pm" aria-hidden="true">Delhi<br>${esc(relTime(l.t))}</div>
     <div class="pr">${esc(l.prompt || "Dear Rajiv")}</div>
     ${l.message ? `<p class="msg${long ? " clamp" : ""}">${esc(l.message)}</p>${long ? `<button class="more" type="button">Read the whole letter</button>` : ""}` : `<div style="height:10px"></div>`}
@@ -1081,15 +1160,40 @@ async function fetchWall(force) {
   }
   throw last;
 }
+let wallLetters = [], wallLimit = 9;
+const isPhone = () => matchMedia("(max-width:600px)").matches;
 function renderWall(j) {
   const list = $("#wallList"), cnt = $("#wallCount");
   const shown = j.letters.length, sealed = Math.max(0, j.total - shown);
-  cnt.innerHTML = j.total ? `<b>${j.total}</b> ${j.total === 1 ? "letter" : "letters"} and counting` + (sealed ? `<small class="sealed">${shown} on the wall · ${sealed} sealed, just for me ✉️</small>` : "") : "";
+  cnt.innerHTML = j.total ? `<b>${j.total}</b> ${j.total === 1 ? "letter" : "letters"}${isClosed() ? "" : " and counting"}` + (sealed ? `<small class="sealed">${shown} on the wall · ${sealed} sealed, just for me ✉️</small>` : "") : "";
+  document.querySelectorAll(".total-letters").forEach(el => { if (j.total) el.textContent = j.total; });
   const sig = j.total + ":" + j.letters.map(l => l.id).join(",");
   if (sig === wallSig) return; wallSig = sig;
-  list.innerHTML = shown ? j.letters.map(cardHTML).join("")
-    : `<div class="wall-empty"><p class="hand">${j.total ? "Some sealed letters have arrived." : "The wall is waiting for its first letter."}</p><p><a href="#write" style="color:var(--red);font-weight:600">Be the ${j.total ? "first one on the wall" : "first"} →</a></p></div>`;
+  wallLetters = j.letters;
+  drawWall();
 }
+function drawWall() {
+  const list = $("#wallList"), n = wallLetters.length;
+  if (!n) {
+    list.innerHTML = `<div class="wall-empty"><p class="hand">The wall is waiting for its first letter.</p></div>`;
+    $("#wallSwipe").hidden = true; return;
+  }
+  const phone = isPhone(), lim = phone ? n : Math.min(n, wallLimit);
+  list.innerHTML = wallLetters.slice(0, lim).map(cardHTML).join("") +
+    (!phone && lim < n ? `<div class="wall-more"><button type="button" class="btn btn-ghost" id="wallMore">Show more letters (${n - lim} more)</button></div>` : "");
+  const sw = $("#wallSwipe"); sw.hidden = false; sw.querySelector("b").textContent = `1 / ${n}`;
+  const mb = document.getElementById("wallMore"); if (mb) mb.onclick = () => { wallLimit += 9; drawWall(); };
+}
+(() => {
+  const list = document.getElementById("wallList"); let t;
+  list.addEventListener("scroll", () => { clearTimeout(t); t = setTimeout(() => {
+    const cards = [...list.querySelectorAll(".pc")]; if (!cards.length) return;
+    const mid = list.scrollLeft + list.clientWidth / 2;
+    let idx = 0; cards.forEach((c, i) => { if (c.offsetLeft <= mid) idx = i; });
+    const b = document.querySelector("#wallSwipe b"); if (b) b.textContent = `${idx + 1} / ${wallLetters.length}`;
+  }, 60); }, {passive: true});
+  let lastPhone = isPhone(); addEventListener("resize", () => { if (isPhone() !== lastPhone) { lastPhone = isPhone(); if (wallLetters.length) drawWall(); } });
+})();
 let wallLoading = false;
 async function loadWall(force) {
   const list = $("#wallList");
@@ -1119,7 +1223,7 @@ $("#lbClose").onclick = closeLB; lb.addEventListener("click", e => { if (e.targe
 addEventListener("keydown", e => { if (e.key === "Escape") closeLB(); });
 $("#wallList").addEventListener("click", async e => {
   const more = e.target.closest(".more");
-  if (more) { const m = more.previousElementSibling; m.classList.toggle("clamp"); more.textContent = m.classList.contains("clamp") ? "Read the whole letter" : "Show less"; return; }
+  if (more) { const card = more.closest(".pc"); const l = wallLetters.find(x => String(x.id) === card.dataset.id); if (l) openLB(`<div class="letter-modal"><div class="pr" style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600">${esc(l.prompt || "Dear Rajiv")}</div><p class="msg">${esc(l.message)}</p><p style="font-family:var(--hand);font-size:28px;margin:10px 0 0">— ${esc(l.name)}</p></div>`); return; }
   const img = e.target.closest(".att img");
   if (img) { openLB(`<img src="${img.dataset.full}" alt="">`); return; }
   const v = e.target.closest("[data-video]");
