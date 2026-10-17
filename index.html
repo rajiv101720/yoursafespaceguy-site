@@ -796,7 +796,7 @@ $("#form").addEventListener("submit", async e => {
       : "Your letter is on the wall now. Thank you for being a part of my 26. ❤️‍🩹";
     $("#form").style.display = "none"; $("#sent").classList.add("show");
     $("#letterCard").scrollIntoView({behavior:"smooth", block:"center"});
-    loadWall(true);
+    loadWall(true); setTimeout(() => loadWall(true), 4000);
   } catch(ex) {
     err.textContent = (ex && ex.message && ex.message.length < 140 ? ex.message : "Couldn't send that.") + " Please try again.";
   } finally {
@@ -851,7 +851,7 @@ async function loadWall(force) {
     const r = await fetch(API + "?action=wall&_=" + (force ? Date.now() : Math.floor(Date.now()/30000)));
     const j = await r.json(); if (!j.ok) throw 0;
     const sig = j.total + ":" + j.letters.map(l => l.id).join(",");
-    cnt.innerHTML = j.total ? `<b>${j.total}</b>${j.total === 1 ? "letter" : "letters"} and counting` : "";
+    cnt.innerHTML = j.total ? `<b>${j.total}</b> ${j.total === 1 ? "letter" : "letters"} and counting` : "";
     if (sig === wallSig) return; wallSig = sig;
     list.innerHTML = j.letters.length ? j.letters.map(cardHTML).join("")
       : `<div class="wall-empty"><p class="hand">${j.total ? "Some sealed letters have arrived." : "The wall is waiting for its first letter."}</p><p><a href="#write" style="color:var(--red);font-weight:600">Be the ${j.total ? "first one on the wall" : "first"} →</a></p></div>`;
