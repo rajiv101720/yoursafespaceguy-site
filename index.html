@@ -409,6 +409,9 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
 .pol{width:clamp(200px,20vw,260px);margin:0}
 @media (max-width:600px){.pol{width:60vw;max-width:240px;padding:9px 9px 12px}.pol p{font-size:20px;margin-top:9px}.reel{gap:16px;padding-bottom:28px}}
 .reel .pol.pol:hover{transform:rotate(0) translateY(-4px) scale(1.02)}
+.wall-head .count-big .sealed{display:block;font-family:var(--sans);font-size:14px;color:var(--muted);margin-top:4px}
+.wall-loading{column-span:all;text-align:center;padding:10px 0 20px}.wall-loading .hand{font-size:28px;margin:0}
+.lightbox iframe{width:min(900px,92vw);height:min(80vh,calc(92vw * 1.6));aspect-ratio:auto}
 </style>
 </head>
 <body>
@@ -1064,21 +1067,47 @@ function cardHTML(l, i) {
     <div class="from"><span class="n">— ${esc(l.name)}</span><span class="r">${sub}</span></div>
   </article>`;
 }
-async function loadWall(force) {
-  const list = $("#wallList"), cnt = $("#wallCount");
-  if (!apiReady()) { list.innerHTML = `<div class="wall-empty"><p class="hand">The wall opens on the 17th.</p><p>Letters will show up here as they arrive.</p></div>`; return; }
-  if (!list.children.length) list.innerHTML = '<div class="skel"></div><div class="skel" style="height:240px"></div><div class="skel"></div>';
-  try {
-    const r = await fetch(API + "?action=wall&_=" + (force ? Date.now() : Math.floor(Date.now()/30000)));
-    const j = await r.json(); if (!j.ok) throw 0;
-    const sig = j.total + ":" + j.letters.map(l => l.id).join(",");
-    cnt.innerHTML = j.total ? `<b>${j.total}</b> ${j.total === 1 ? "letter" : "letters"} and counting` : "";
-    if (sig === wallSig) return; wallSig = sig;
-    list.innerHTML = j.letters.length ? j.letters.map(cardHTML).join("")
-      : `<div class="wall-empty"><p class="hand">${j.total ? "Some sealed letters have arrived." : "The wall is waiting for its first letter."}</p><p><a href="#write" style="color:var(--red);font-weight:600">Be the ${j.total ? "first one on the wall" : "first"} →</a></p></div>`;
-  } catch(e) {
-    if (!wallSig) list.innerHTML = `<div class="wall-empty"><p class="hand">Couldn't load the wall right now.</p><p>Refresh in a minute. Your letters are safe.</p></div>`;
+async function fetchWall(force) {
+  let last;
+  for (let i = 0; i < 4; i++) {
+    const ctl = new AbortController(); const to = setTimeout(() => ctl.abort(), 20000);
+    try {
+      const r = await fetch(API + "?action=wall&_=" + (force || i ? Date.now() : Math.floor(Date.now()/30000)), {signal: ctl.signal});
+      const j = await r.json(); clearTimeout(to);
+      if (j && j.ok) return j;
+      last = new Error("bad");
+    } catch (e) { clearTimeout(to); last = e; }
+    await new Promise(r => setTimeout(r, 1500 * (i + 1)));
   }
+  throw last;
+}
+function renderWall(j) {
+  const list = $("#wallList"), cnt = $("#wallCount");
+  const shown = j.letters.length, sealed = Math.max(0, j.total - shown);
+  cnt.innerHTML = j.total ? `<b>${j.total}</b> ${j.total === 1 ? "letter" : "letters"} and counting` + (sealed ? `<small class="sealed">${shown} on the wall · ${sealed} sealed, just for me ✉️</small>` : "") : "";
+  const sig = j.total + ":" + j.letters.map(l => l.id).join(",");
+  if (sig === wallSig) return; wallSig = sig;
+  list.innerHTML = shown ? j.letters.map(cardHTML).join("")
+    : `<div class="wall-empty"><p class="hand">${j.total ? "Some sealed letters have arrived." : "The wall is waiting for its first letter."}</p><p><a href="#write" style="color:var(--red);font-weight:600">Be the ${j.total ? "first one on the wall" : "first"} →</a></p></div>`;
+}
+let wallLoading = false;
+async function loadWall(force) {
+  const list = $("#wallList");
+  if (!apiReady() || wallLoading) return;
+  wallLoading = true;
+  if (!wallSig) {
+    let cached = null; try { cached = JSON.parse(localStorage.getItem("ysg-wall") || "null"); } catch(e) {}
+    if (cached && cached.ok) renderWall(cached);
+    else if (!list.children.length) list.innerHTML = '<div class="wall-loading"><p class="hand">Opening the letterbox…</p></div><div class="skel"></div><div class="skel" style="height:240px"></div><div class="skel"></div>';
+  }
+  try {
+    const j = await fetchWall(force);
+    renderWall(j);
+    try { localStorage.setItem("ysg-wall", JSON.stringify(j)); } catch(e) {}
+  } catch(e) {
+    if (!wallSig) list.innerHTML = `<div class="wall-empty"><p class="hand">The letters are taking a moment.</p><p><button type="button" class="btn btn-red" id="wallRetry" style="margin-top:10px">Try again</button></p></div>`;
+    const rb = document.getElementById("wallRetry"); if (rb) rb.onclick = () => { wallSig = ""; loadWall(true); };
+  } finally { wallLoading = false; }
 }
 loadWall(); setInterval(() => { if (!document.hidden) loadWall(); }, 60000);
 
