@@ -299,6 +299,110 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}*{animation:none!important;transition:none!important}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ===== v2: cute touches ===== */
+.band-wrap{overflow:hidden;padding:16px 0;margin:-16px 0}
+.ribbon-band{position:relative;background:var(--sun);color:var(--ink);overflow:hidden;transform:rotate(-1.2deg);margin:0 -10px;box-shadow:0 8px 20px -12px rgba(120,80,0,.6);z-index:2}
+.ribbon-band .track{display:flex;gap:34px;white-space:nowrap;padding:12px 0;width:max-content;animation:marq 38s linear infinite;font-family:var(--serif);font-size:clamp(18px,2.2vw,24px);font-style:italic}
+.ribbon-band .track span{display:inline-flex;align-items:center;gap:34px}
+.ribbon-band svg{width:22px;height:22px;flex:0 0 auto}
+@keyframes marq{to{transform:translateX(-50%)}}
+.bday-sticker{position:absolute;right:-6px;top:-8px;z-index:5;width:96px;height:96px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;text-align:center;font-family:var(--hand);font-size:21px;line-height:1;transform:rotate(12deg);box-shadow:0 10px 20px -8px rgba(147,28,34,.7);padding:10px}
+@media (prefers-reduced-motion:no-preference){.bday-sticker{animation:wob 3.2s ease-in-out infinite}@keyframes wob{50%{transform:rotate(4deg) scale(1.05)}}}
+.doodle{position:absolute;pointer-events:none}
+.d-star{width:46px;right:6%;top:46px;opacity:.9}
+.about .portrait .note{position:absolute;right:14px;top:18px;background:#FFF3B0;padding:10px 14px 12px;font-family:var(--hand);font-size:22px;line-height:1;transform:rotate(5deg);box-shadow:0 8px 16px -8px rgba(0,0,0,.35);z-index:2}
+.ph{position:relative}
+.ph-tag{position:absolute;left:12px;bottom:12px;background:rgba(255,251,243,.94);color:var(--ink);font-family:var(--hand);font-size:20px;line-height:1;padding:5px 11px;border-radius:999px;transform:rotate(-2deg)}
+.item.flip .ph{order:2}
+.item-link{margin-top:6px;color:var(--sun);font-weight:600;text-decoration:none;align-self:flex-start}
+.item-link:hover{text-decoration:underline}
+.wins{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:12px}
+.wins li{color:#D8CCB8;padding-left:22px;position:relative}
+.wins li::before{content:"✶";position:absolute;left:0;color:var(--sun)}
+.wins b{color:#fff;font-weight:600}
+.pol{position:relative}
+.pol::before{content:"";position:absolute;top:-12px;left:50%;width:84px;height:24px;margin-left:-42px;background:rgba(242,182,48,.72);transform:rotate(-4deg);box-shadow:0 1px 2px rgba(0,0,0,.08);z-index:2}
+.pol:nth-child(3n)::before{background:rgba(195,38,46,.55);transform:rotate(5deg)}
+.pol:nth-child(3n+1)::before{background:rgba(76,107,51,.5)}
+.press-label{font-family:var(--hand);font-size:28px;margin:0 0 14px;color:var(--red)}
+.press-grid{grid-template-columns:repeat(3,1fr)}
+.press-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.press-list li{border-bottom:1px solid var(--line)}
+.press-list a{display:grid;grid-template-columns:220px 1fr 30px;gap:20px;align-items:center;padding:20px 4px;text-decoration:none;transition:background .2s}
+.press-list a:hover{background:rgba(255,251,243,.7)}
+.press-list .o{font-family:var(--serif);font-weight:600;font-size:22px;letter-spacing:-.01em}
+.press-list .q{color:var(--ink-2);font-style:italic;font-family:var(--serif);font-size:18px}
+.press-list .arr{color:var(--red);font-weight:700;text-align:right}
+.support{padding-top:0}
+.sup-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(28px,5vw,60px);box-shadow:var(--shadow);overflow:hidden}
+.sup-sf{position:absolute;right:-30px;top:-30px;width:150px;opacity:.95}
+@media (prefers-reduced-motion:no-preference){.sup-sf{animation:spin 40s linear infinite}}
+.sup-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;max-width:720px}
+.sup-btn{display:flex;align-items:center;gap:14px;padding:18px 20px;border-radius:18px;background:#fff;border:1.5px solid var(--ink);text-decoration:none;transition:transform .15s,background .2s,color .2s}
+.sup-btn:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px)}
+.sup-btn .flag{font-size:30px;line-height:1}
+.sup-btn b{display:block;font-size:17px}
+.sup-btn small{display:block;font-size:14px;opacity:.75}
+.sup-btn .arr{margin-left:auto;font-weight:700}
+.mobile-cta{display:none}
+.confetti{position:fixed;top:-30px;z-index:200;pointer-events:none;font-size:22px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.9}}
+
+/* ===== v2: phone polish ===== */
+@media (max-width:860px){
+  .press-grid{grid-template-columns:1fr}
+  .item.flip .ph{order:0}
+  .press-list a{grid-template-columns:1fr 24px;gap:4px 12px;padding:16px 2px}
+  .press-list .o{grid-column:1}
+  .press-list .q{grid-column:1;font-size:16px}
+  .press-list .arr{grid-row:1/3;grid-column:2}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .sec{padding:64px 0}
+  h2{font-size:clamp(34px,10vw,46px)}
+  .lede{font-size:17px}
+  .nav .wrap{height:58px}
+  .brand{font-size:15px;gap:8px}
+  .brand svg{width:22px;height:22px}
+  .nav a.btn{padding:9px 14px;font-size:13px}
+  .hero{padding:20px 0 56px}
+  .hero h1{font-size:clamp(56px,17vw,80px);margin:14px 0 18px}
+  .hero .cta{flex-direction:column}
+  .hero .cta .btn{justify-content:center;width:100%}
+  .stamp-zone{max-width:290px;padding:6px 22px 26px}
+  .bday-sticker{width:78px;height:78px;font-size:17px;right:-14px;top:-4px}
+  .about .portrait .note{right:8px}
+  .stat{padding:20px 12px 18px 0}
+  .stat+.stat{padding-left:12px}
+  .stat b{font-size:40px}
+  .stat span{font-size:14px}
+  .item .bd{padding:20px 20px 22px}
+  .item h3{font-size:28px}
+  .items{gap:14px}
+  .pol{width:74vw;max-width:290px}
+  .letter{padding:6px}
+  .letter-in{padding:20px 16px 22px}
+  .letter .mini-stamp{width:46px;top:14px;right:14px}
+  .prompts{padding-right:52px}
+  .chip{padding:8px 12px;font-size:13.5px}
+  .ruled{font-size:18px;min-height:200px}
+  .attach{padding:14px}
+  .abtn{width:100%;justify-content:center;padding:12px 16px}
+  .send-row{flex-direction:column-reverse;align-items:stretch}
+  .send-row .btn{justify-content:center;width:100%;padding:17px 24px;font-size:17px}
+  .send-row .fine{text-align:center;max-width:none}
+  .sup-row{grid-template-columns:1fr}
+  .sup-sf{width:110px;right:-26px;top:-26px}
+  .wall{columns:1}
+  .pc{transform:none!important}
+  footer{padding:50px 0 110px}
+  footer .grid{flex-direction:column;align-items:flex-start}
+  .ribbon-band .track{gap:24px;padding:10px 0}
+  .mobile-cta{display:flex;position:fixed;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;justify-content:center;align-items:center;gap:10px;padding:16px 20px;border-radius:999px;background:var(--red);color:#fff;font-weight:600;text-decoration:none;box-shadow:0 14px 30px -10px rgba(147,28,34,.8);transform:translateY(140%);transition:transform .35s ease}
+  .mobile-cta.show{transform:none}
+}
 </style>
 </head>
 <body>
@@ -330,6 +434,7 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
       <a class="l" href="#about">About</a>
       <a class="l" href="#work">Work</a>
       <a class="l" href="#wall">The wall</a>
+      <a class="l" href="#support">Support</a>
       <a class="btn btn-red" href="#write">Write a letter</a>
     </nav>
   </div>
@@ -352,6 +457,7 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
       <p class="note">Takes two minutes. You can tuck in a photo, a video or a voice note.</p>
     </div>
     <div class="stamp-zone" aria-hidden="true">
+      <div class="bday-sticker" id="bday">It's my birthday!</div>
       <svg class="sf a" viewBox="0 0 100 100"><use href="#sunflower"/></svg>
       <div class="stamp">
         <div class="stamp-in">
@@ -375,7 +481,8 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
   </div>
 </section>
 
-<hr class="rule">
+<div class="band-wrap"><div class="ribbon-band" aria-hidden="true"><div class="track"><span>26 today<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>showing up<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>chai at 2 AM<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>Delhi<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>sunflowers<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>strangers → friends<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>My Safe Space<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>rides home<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>new year starts now<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>write me a letter<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>26 today<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>showing up<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>chai at 2 AM<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>Delhi<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>sunflowers<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>strangers → friends<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>My Safe Space<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>rides home<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>new year starts now<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span><span>write me a letter<svg viewBox="0 0 100 100"><use href="#sunflower"/></svg></span></div></div></div>
+
 
 <!-- ABOUT -->
 <section class="sec about" id="about">
@@ -384,6 +491,7 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
       <div class="portrait reveal">
         <img src="img/varanasi.jpg" alt="Rajiv sitting at the front of a wooden boat on the Ganga in Varanasi at sunrise" loading="lazy">
         <span class="tag">Kashi, sunrise</span>
+        <span class="note">hi, it's me 👋</span>
       </div>
       <div class="reveal">
         <p class="kicker">Hi, I'm Rajiv</p>
@@ -406,6 +514,7 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
 
 <!-- WORK -->
 <section class="sec work" id="work">
+  <svg class="doodle d-star" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3l4 12 13 1-10 8 4 13-11-7-11 7 4-13L3 16l13-1z" fill="none" stroke="#F2B630" stroke-width="2" stroke-linejoin="round"/></svg>
   <div class="wrap">
     <div class="sec-head">
       <div>
@@ -417,23 +526,25 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
 
     <div class="items">
       <article class="item wide reveal">
-        <div class="ph"><img src="img/holi-crowd.jpg" alt="Rajiv taking a selfie with a big group of friends in matching lavender t-shirts" loading="lazy"></div>
+        <div class="ph"><img src="img/mss-paint.jpg" alt="Rajiv smiling while strangers paint his white T-shirt on a busy Delhi street" loading="lazy"><span class="ph-tag">from the MSS highlights</span></div>
         <div class="bd">
           <span class="no">No. 01 · since Dec 2023</span>
           <h3>My Safe Space</h3>
-          <p>A Delhi community for people who want to belong somewhere without pretending. Food walks, workshops, storytelling, art nights, Sunday meetups and mountain trips. Over 700 people have walked in as strangers and walked out with friends.</p>
+          <p class="line">It started with a cardboard sign and a white T-shirt.</p>
+          <p>I stood in CP and let strangers paint my T-shirt. Then came food walks, workshops, storytelling, art nights, Sunday meetups and mountain trips. Over 700 people have walked in as strangers and walked out with friends.</p>
           <div class="tags"><span>Art As You Are</span><span>Reel Conversations</span><span>Soul Bites</span><span>Shaadi Ho Toh Aisi</span><span>Chalo Pahadon Mein</span></div>
         </div>
       </article>
 
-      <article class="item reveal">
-        <div class="ph"><img src="img/manipur.jpg" alt="Rajiv and a friend holding a red Save Manipur banner at night" loading="lazy"></div>
+      <article class="item wide flip reveal">
+        <div class="ph"><img src="img/dgy-dashboard.jpg" alt="The Detainee Gharwaapsi Yojna live dashboard, with Rajiv on a video call explaining it" loading="lazy"><span class="ph-tag">the live dashboard</span></div>
         <div class="bd">
           <span class="no">No. 02 · Oct 2026</span>
           <h3>Detainee Gharwaapsi Yojna</h3>
           <p class="line">They detain. We bring you home.</p>
-          <p>When protesters were detained and dropped far outside Delhi, we built a network of volunteer drivers and a live dispatch board to get every one of them home. With Meghnad, Satvik and a lot of strangers with cars.</p>
-          <div class="tags"><span>20+ volunteer drivers</span><span>Live dispatch board</span></div>
+          <p>When protesters were detained and dropped far outside Delhi, I turned a basic Google Sheet into a live control room. It tracks police buses, reads WhatsApp updates, and matches volunteer drivers so every person gets a ride home. Built with Meghnad, Satvik and a lot of strangers with cars.</p>
+          <div class="tags"><span>20+ volunteer drivers</span><span>Live dispatch board</span><span>Built from a Google Sheet</span></div>
+          <a class="item-link" href="https://www.instagram.com/reel/DeHypYOlB6j/" target="_blank" rel="noopener">Watch how it works ↗</a>
         </div>
       </article>
 
@@ -443,39 +554,47 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
           <span class="no">No. 03 · Oct 2026</span>
           <h3>Pause</h3>
           <p class="line">People Are Under Systemic Exhaustion.</p>
-          <p>Free therapy sessions with volunteer therapists, for protesters, people who've been detained, and the volunteers holding everyone else up. Because showing up also means looking after the ones who show up.</p>
+          <p>Free therapy sessions with volunteer therapists, for protesters, people who've been detained, and the volunteers holding everyone else up. Showing up also means looking after the ones who show up.</p>
           <div class="tags"><span>Volunteer therapists</span><span>2 free sessions each</span></div>
+          <a class="item-link" href="https://pausepsi.in/impact" target="_blank" rel="noopener">See the impact ↗</a>
+        </div>
+      </article>
+
+      <article class="item reveal">
+        <div class="ph"><img src="img/manipur.jpg" alt="Rajiv and a friend holding a red Save Manipur banner at night" loading="lazy"></div>
+        <div class="bd">
+          <span class="no">No. 04 · all year</span>
+          <h3>One person at a time</h3>
+          <ul class="wins">
+            <li><b>Anupam.</b> Raised funds together to clear his bills and get him support. "This isn't my win, it's ours."</li>
+            <li><b>Assam floods.</b> Money and supplies for flood-hit families, with a friend on the ground.</li>
+            <li><b>Vimal bhaiya.</b> Met him at Saket Metro selling rakhis for his daughter's education. Asked you to help. You did.</li>
+            <li><b>Save Manipur.</b> Ramleela Maidan and India Gate. My Hindi is broken, my intentions aren't.</li>
+          </ul>
         </div>
       </article>
 
       <article class="item third reveal">
         <div class="bd">
-          <span class="no">No. 04</span>
+          <span class="no">No. 05</span>
           <h3>Haath Badhao</h3>
           <p>A volunteer network for people who want to use their skills for something that matters. Drivers, medics, designers, scouts. 70+ people in the first week.</p>
         </div>
       </article>
       <article class="item third reveal">
         <div class="bd">
-          <span class="no">No. 05</span>
+          <span class="no">No. 06</span>
           <h3>Good Humans Network</h3>
           <p>The community behind the community. Where fundraisers, medical camps and late-night asks for help find people who say yes.</p>
         </div>
       </article>
       <article class="item third reveal">
         <div class="bd">
-          <span class="no">No. 06</span>
+          <span class="no">No. 07</span>
           <h3>26 Days to 26</h3>
           <p>Documenting the last 26 days of being 25. Lessons, mistakes, money, friendships, failures. The real version, not the polished one.</p>
         </div>
       </article>
-    </div>
-
-    <div class="small-wins reveal" aria-label="Showing up, one person at a time">
-      <div><b>Anupam</b><span>Raised funds together to clear his bills and get him support. "This isn't my win, it's ours."</span></div>
-      <div><b>Assam floods</b><span>Raised money and supplies for flood-hit families, with a friend on the ground.</span></div>
-      <div><b>Vimal bhaiya</b><span>Met him at Saket Metro selling rakhis for his daughter's education. Asked you to help. You did.</span></div>
-      <div><b>Save Manipur</b><span>Stood at Ramleela Maidan and India Gate. My Hindi is broken, my intentions aren't.</span></div>
     </div>
   </div>
 </section>
@@ -490,20 +609,36 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
       </div>
       <p class="lede" style="max-width:38ch">I'm not a journalist. Not an NGO. Just someone who chose to show up, with a lot of good people who did the same.</p>
     </div>
+
+    <p class="press-label">Featured</p>
     <div class="press-grid">
       <a class="press reveal" href="https://www.instagram.com/reel/DeeKFPeJ4LJ/" target="_blank" rel="noopener">
-        <span class="ribbon">Video feature</span>
+        <span class="ribbon">Video</span>
         <div class="outlet">BBC News <small>Hindi</small></div>
         <blockquote>It started with a few calls to get detained people back home. Then BBC News told that story.</blockquote>
         <span class="go">Watch the story →</span>
       </a>
+      <a class="press reveal" href="https://www.instagram.com/reel/DeHypYOlB6j/" target="_blank" rel="noopener">
+        <span class="ribbon">Video</span>
+        <div class="outlet">The Telegraph <small>Online</small></div>
+        <blockquote>"Starting from a basic Google Sheet, he vibe-coded the 'Detainee Gharwapsi Yojana'."</blockquote>
+        <span class="go">Watch the feature →</span>
+      </a>
       <a class="press reveal" href="https://www.instagram.com/reel/DeJ3kGapi6U/" target="_blank" rel="noopener">
         <span class="ribbon">Feature</span>
         <div class="outlet">India Today <small>mo.of.everything</small></div>
-        <blockquote>My work got featured by India Today. Feeling incredibly proud, and thankful to everyone who amplified it.</blockquote>
+        <blockquote>Featured by India Today's mo.of.everything. Grateful to everyone who amplified it.</blockquote>
         <span class="go">See the feature →</span>
       </a>
     </div>
+
+    <p class="press-label" style="margin-top:40px">The work, in the news</p>
+    <ul class="press-list">
+      <li class="reveal"><a href="https://tribune.com.pk/story/2634570/india-youth-shift-tactics-as-police-clamp-down-on-election-protest" target="_blank" rel="noopener"><span class="o">AFP</span><span class="q">"A digital dashboard matching them with volunteer drivers."</span><span class="arr">↗</span></a></li>
+      <li class="reveal"><a href="https://www.dropsitenews.com/p/india-delhi-protests-voter-purge" target="_blank" rel="noopener"><span class="o">Drop Site News</span><span class="q">"One wing is in charge of driving people home after they are let go."</span><span class="arr">↗</span></a></li>
+      <li class="reveal"><a href="https://navbharatlive.com/viral/detainee-gharwapsi-yojana-gen-z-delhi-protesters-online-platform-ars24" target="_blank" rel="noopener"><span class="o">Navbharat Live</span><span class="q">On the Gen-Z platform helping families find detained protesters.</span><span class="arr">↗</span></a></li>
+      <li class="reveal"><a href="https://www.youtube.com/watch?v=KqRpyLGSdBc" target="_blank" rel="noopener"><span class="o">Khabargaon</span><span class="q">"Delhi Police की नई काट, Gen-Z ले आए Detainee Gharwapsi Yojna"</span><span class="arr">↗</span></a></li>
+    </ul>
   </div>
 </section>
 
@@ -520,12 +655,18 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
       <p class="reel-hint">Drag or swipe <span aria-hidden="true">→</span></p>
     </div>
     <div class="reel" id="reel" tabindex="0" aria-label="Photo gallery">
+      <figure class="pol"><div class="ph"><img src="img/mss-sign.jpg" alt="A handwritten cardboard sign that says My Safe Space for Everyone" loading="lazy"></div><p>Where it all started. A cardboard sign.</p></figure>
       <figure class="pol"><div class="ph"><img src="img/holi-selfie.jpg" alt="Rajiv covered in Holi colours holding a cup of thandai" loading="lazy"></div><p>Holi. Thandai. No regrets.</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/coldplay.jpg" alt="A Coldplay concert stage with a confirmed ticket on screen" loading="lazy"></div><p>Coldplay. Finally. 🥹</p></figure>
       <figure class="pol"><div class="ph"><img src="img/marathon.jpg" alt="Rajiv running a race, both hands up in victory signs" loading="lazy"></div><p>Finished the run. Still smiling, somehow.</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/mss-everyone.jpg" alt="Rajiv in a painted T-shirt standing with auto drivers" loading="lazy"></div><p>A safe space for everyone. Yes, everyone.</p></figure>
       <figure class="pol"><div class="ph"><img src="img/snow-group.jpg" alt="A group in winter jackets sitting in the snow in front of a red temple" loading="lazy"></div><p>Chalo pahadon mein, with the MSS gang</p></figure>
       <figure class="pol"><div class="ph"><img src="img/maahaul.jpg" alt="Rajiv dancing in a park with a crowd around him" loading="lazy"></div><p>Apka beta kya banata hai? Maahaul.</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/mss-bracelet.jpg" alt="A beaded bracelet that spells MSS" loading="lazy"></div><p>MSS, on a bracelet. Made by Vickey bhaiya.</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/raahe-dilli.jpg" alt="A big group sitting together at night at a Delhi monument" loading="lazy"></div><p>Raahe Dilli, night out edition</p></figure>
       <figure class="pol"><div class="ph"><img src="img/beach.jpg" alt="Rajiv's silhouette standing on a beach at sunset" loading="lazy"></div><p>No one asking me what I want to do with my life</p></figure>
       <figure class="pol"><div class="ph"><img src="img/runclub.jpg" alt="A run club group posing with race bibs" loading="lazy"></div><p>Run club mornings</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/mss-tshirt.jpg" alt="Someone drawing on Rajiv's T-shirt with a marker" loading="lazy"></div><p>Strangers drew on me. Best canvas I've had.</p></figure>
       <figure class="pol"><div class="ph"><img src="img/holi-group.jpg" alt="A group of friends drenched in Holi colours" loading="lazy"></div><p>Colour everywhere. People I love.</p></figure>
       <figure class="pol"><div class="ph"><img src="img/monument.jpg" alt="A community group sitting on the grass in front of an old Delhi monument" loading="lazy"></div><p>Sundays with the community</p></figure>
       <figure class="pol"><div class="ph"><img src="img/tilak.jpg" alt="Rajiv with a tilak on his forehead at a festival at night" loading="lazy"></div><p>Festival nights</p></figure>
@@ -635,6 +776,30 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
   </div>
 </section>
 
+<!-- SUPPORT -->
+<section class="sec support" id="support">
+  <div class="wrap">
+    <div class="sup-card reveal">
+      <svg class="sup-sf" viewBox="0 0 100 100" aria-hidden="true"><use href="#sunflower"/></svg>
+      <p class="kicker">Support my work</p>
+      <h2 style="margin-top:12px">Want to help me keep <em>showing up?</em></h2>
+      <p class="lede" style="margin-top:16px">Rides home, medical camps, therapy sessions, fundraisers. Most of it runs on chai, late nights and people like you. If you'd like to chip in, here's how.</p>
+      <div class="sup-row">
+        <a class="sup-btn" href="https://vezer.app/leaders?profile=b2klam" target="_blank" rel="noopener">
+          <span class="flag" aria-hidden="true">🇮🇳</span>
+          <span><b>From India</b><small>Support me on Vezer</small></span>
+          <span class="arr" aria-hidden="true">↗</span>
+        </a>
+        <a class="sup-btn" href="https://buymeacoffee.com/yoursafespaceguy" target="_blank" rel="noopener">
+          <span class="flag" aria-hidden="true">🌍</span>
+          <span><b>From anywhere else</b><small>Buy me a coffee</small></span>
+          <span class="arr" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -645,11 +810,13 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
     </div>
     <div class="links">
       <a href="https://www.instagram.com/yoursafespaceguy/" target="_blank" rel="noopener">Instagram ↗</a>
-      <a href="https://vezer.app/leaders?profile=b2klam" target="_blank" rel="noopener">Support my work ↗</a>
+      <a href="#support">Support my work</a>
       <a href="#write">Write a letter</a>
     </div>
   </div>
 </footer>
+
+<a class="mobile-cta" id="mcta" href="#write">✉ Write me a letter</a>
 
 <div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="Preview"><button class="close" id="lbClose" aria-label="Close">×</button><div id="lbBody"></div></div>
 
@@ -794,7 +961,7 @@ $("#form").addEventListener("submit", async e => {
     $("#sentMsg").textContent = payload.visibility === "private"
       ? "Your sealed letter just reached me. Only I'll read it. Thank you for being a part of my 26. ❤️‍🩹"
       : "Your letter is on the wall now. Thank you for being a part of my 26. ❤️‍🩹";
-    $("#form").style.display = "none"; $("#sent").classList.add("show");
+    $("#form").style.display = "none"; $("#sent").classList.add("show"); confetti();
     $("#letterCard").scrollIntoView({behavior:"smooth", block:"center"});
     loadWall(true); setTimeout(() => loadWall(true), 4000);
   } catch(ex) {
@@ -814,6 +981,40 @@ $("#shareBtn").addEventListener("click", async e => {
   if (navigator.share) { try { await navigator.share({title:"Write Rajiv a letter", text: shareText}); return; } catch(x) { return; } }
   window.open("https://wa.me/?text=" + encodeURIComponent(shareText), "_blank", "noopener");
 });
+
+/* ===== v2 ===== */
+/* birthday sticker */
+(() => {
+  const d = new Date(), m = d.getMonth(), day = d.getDate(), el = $("#bday"); if (!el) return;
+  if (m === 9 && day === 17) el.textContent = "It's my birthday!";
+  else if (m === 9 && day < 17) el.textContent = "Birthday soon!";
+  else el.textContent = "Still celebrating";
+})();
+/* mobile sticky CTA */
+(() => {
+  const cta = $("#mcta"); if (!cta) return;
+  const seen = {hero:true, write:false};
+  const upd = () => cta.classList.toggle("show", !seen.hero && !seen.write);
+  const ob = new IntersectionObserver(es => { es.forEach(e => { seen[e.target.dataset.k] = e.isIntersecting; }); upd(); }, {threshold:0});
+  const h = document.querySelector(".hero .cta"), w = $("#write");
+  if (h) { h.dataset.k = "hero"; ob.observe(h); }
+  if (w) { w.dataset.k = "write"; ob.observe(w); }
+})();
+/* confetti */
+function confetti() {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const bits = ["🌻","✉️","💛","✨","🌼","❤️"];
+  for (let i = 0; i < 46; i++) {
+    const s = document.createElement("span"); s.className = "confetti";
+    s.textContent = bits[i % bits.length];
+    s.style.left = Math.random()*100 + "vw";
+    s.style.fontSize = (16 + Math.random()*18) + "px";
+    s.style.animationDuration = (2.4 + Math.random()*2.2) + "s";
+    s.style.animationDelay = (Math.random()*0.6) + "s";
+    document.body.appendChild(s); setTimeout(() => s.remove(), 5600);
+  }
+}
+
 
 /* wall */
 let wallSig = "";
