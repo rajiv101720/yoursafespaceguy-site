@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>My letters · yoursafespaceguy</title>
+<meta name="theme-color" content="#F4ECDD">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='50'%3E✉️%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..700&family=Instrument+Sans:wght@400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F4ECDD;--paper-2:#EFE4D0;--card:#FFFBF3;--ink:#1F1A15;--ink-2:#4A4038;--muted:#7A6E62;--red:#C3262E;--red-deep:#931C22;--sun:#F2B630;--line:#DCCFB8;
+  --serif:"Fraunces",Georgia,serif;--sans:"Instrument Sans",system-ui,-apple-system,sans-serif;--hand:"Caveat",cursive;--shadow:0 1px 0 rgba(31,26,21,.04),0 10px 30px -12px rgba(60,40,20,.28)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;background-image:radial-gradient(rgba(120,90,50,.07) 1px,transparent 1px);background-size:4px 4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+header{padding:22px 0 10px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+header a{color:var(--ink-2);text-decoration:none;font-weight:600}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,8vw,72px);letter-spacing:-.02em;line-height:1;margin:18px 0 8px}
+h1 em{color:var(--red)}
+.sub{color:var(--ink-2);margin:0 0 22px}
+.lock{max-width:420px;margin:40px auto;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--shadow);text-align:center}
+.lock .hand{font-family:var(--hand);font-size:34px;margin:0 0 6px}
+.lock input{width:100%;font:inherit;font-size:17px;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;background:#fff;margin:14px 0 10px;outline:none;text-align:center}
+.lock input:focus{border-color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;background:var(--red);color:#fff;width:100%}
+.err{color:var(--red-deep);font-size:14px;min-height:1.2em;margin-top:10px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0 22px;position:sticky;top:0;z-index:5;background:rgba(244,236,221,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:10px 0}
+.tab{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tab b{font-weight:600;margin-left:4px;opacity:.7}
+.search{flex:1;min-width:160px;font:inherit;font-size:15px;padding:9px 14px;border:1.5px solid var(--line);border-radius:999px;background:#fff;outline:none}
+.wall{columns:3 320px;column-gap:18px}
+.pc{break-inside:avoid;margin:0 0 18px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px 20px 16px;box-shadow:var(--shadow);position:relative}
+.pc.private{border-color:#E9B9B5;background:#FFF7F3}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--paper-2);color:var(--ink-2)}
+.pc.private .badge{background:var(--red);color:#fff}
+.badge.hid{background:#333;color:#fff;margin-left:6px}
+.when{float:right;font-size:12px;color:var(--muted)}
+.pr{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:12px}
+.msg{font-family:var(--serif);font-size:18px;line-height:1.5;margin:8px 0 12px;white-space:pre-wrap;word-wrap:break-word}
+.att{margin:4px 0 12px}
+.att img{width:100%;border-radius:6px;cursor:zoom-in}
+.att audio,.att video{width:100%;border-radius:6px}
+.mbtn{display:flex;align-items:center;gap:10px;width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;padding:11px 14px;font:inherit;font-weight:600;cursor:pointer;text-align:left;text-decoration:none;color:var(--ink)}
+.mbtn .pi{width:32px;height:32px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-size:13px;flex:0 0 auto}
+.from{display:flex;justify-content:space-between;gap:10px;align-items:baseline;border-top:1px dashed var(--line);padding-top:10px}
+.from .n{font-family:var(--hand);font-size:26px;line-height:1}
+.from .r{font-size:13px;color:var(--muted);text-align:right}
+.from a{color:var(--muted)}
+.empty{column-span:all;text-align:center;padding:50px 10px;color:var(--ink-2)}
+.lb{position:fixed;inset:0;background:rgba(20,15,10,.92);display:none;place-items:center;z-index:50;padding:16px}
+.lb.on{display:grid}.lb img{max-width:100%;max-height:90vh;border-radius:6px}
+.out{background:none;border:0;color:var(--muted);font:inherit;cursor:pointer;text-decoration:underline}
+@media (max-width:600px){.wall{columns:1}.bar{gap:6px}.tab{padding:7px 11px;font-size:13px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a href="/">← yoursafespaceguy.in</a><button class="out" id="logout" hidden>Lock</button></header>
+
+  <section id="lockView">
+    <div class="lock">
+      <p class="hand">Just for Rajiv ✉️</p>
+      <p style="margin:0;color:var(--ink-2)">Enter your passcode to open every letter, including the sealed ones.</p>
+      <form id="lockForm">
+        <input id="pass" type="password" autocomplete="current-password" placeholder="Passcode" aria-label="Passcode">
+        <button class="btn" type="submit" id="openBtn">Open my letters</button>
+      </form>
+      <div class="err" id="err" role="alert"></div>
+    </div>
+  </section>
+
+  <section id="inboxView" hidden>
+    <h1>All my <em>letters.</em></h1>
+    <p class="sub" id="summary"></p>
+    <div class="bar">
+      <button class="tab" data-f="all" aria-pressed="true">All<b id="cAll"></b></button>
+      <button class="tab" data-f="private" aria-pressed="false">Only for me ✉️<b id="cPriv"></b></button>
+      <button class="tab" data-f="public" aria-pressed="false">On the wall<b id="cPub"></b></button>
+      <button class="tab" data-f="hidden" aria-pressed="false">Hidden<b id="cHid"></b></button>
+      <input class="search" id="q" type="search" placeholder="Search names or words">
+    </div>
+    <div class="wall" id="list"></div>
+  </section>
+</div>
+<div class="lb" id="lb"><img id="lbImg" alt=""></div>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbwfzPAwNswl9RbrpapwtkM4j0STrylPmnTMWkYJP97pHW4GlUguDsrWMvv1MCWvOOF4/exec";
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let key = "", letters = [], filter = "all";
+try { key = localStorage.getItem("ysg-admin") || ""; } catch(e) {}
+
+async function api(params) {
+  const u = API + "?" + new URLSearchParams({...params, key, _: Date.now()});
+  for (let i = 0; i < 3; i++) {
+    try { const r = await fetch(u); const j = await r.json(); return j; }
+    catch(e) { await new Promise(r => setTimeout(r, 1500 * (i + 1))); }
+  }
+  throw new Error("network");
+}
+
+async function openInbox() {
+  $("#err").textContent = ""; $("#openBtn").textContent = "Opening…"; $("#openBtn").disabled = true;
+  try {
+    const j = await api({action: "inbox"});
+    if (!j.ok) { $("#err").textContent = j.error === "wrong passcode" ? "That passcode doesn't match." : "Couldn't open the letters."; try { localStorage.removeItem("ysg-admin"); } catch(e) {} showLock(); return; }
+    try { localStorage.setItem("ysg-admin", key); } catch(e) {}
+    letters = j.letters; showInbox();
+  } catch(e) { $("#err").textContent = "Network hiccup. Try again."; showLock(); }
+  finally { $("#openBtn").textContent = "Open my letters"; $("#openBtn").disabled = false; }
+}
+function showLock() { $("#lockView").hidden = false; $("#inboxView").hidden = true; $("#logout").hidden = true; }
+function showInbox() {
+  $("#lockView").hidden = true; $("#inboxView").hidden = false; $("#logout").hidden = false;
+  const priv = letters.filter(l => l.visibility === "private").length, hid = letters.filter(l => l.hidden).length;
+  const pub = letters.filter(l => l.visibility === "public" && !l.hidden).length;
+  $("#cAll").textContent = letters.length; $("#cPriv").textContent = priv; $("#cPub").textContent = pub; $("#cHid").textContent = hid;
+  $("#summary").textContent = `${letters.length} letters so far. ${priv} sealed just for you.`;
+  render();
+}
+const fmt = iso => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleString("en-IN", {day:"numeric", month:"short", hour:"numeric", minute:"2-digit"}); };
+function attHTML(l) {
+  if (!l.fileId) return "";
+  const id = esc(l.fileId), m = l.mime || "";
+  if (m.startsWith("image/")) {
+    if (l.visibility === "public") return `<div class="att"><img src="https://lh3.googleusercontent.com/d/${id}=w900" data-full="https://lh3.googleusercontent.com/d/${id}=w1800" alt="" loading="lazy"></div>`;
+    return `<div class="att"><button class="mbtn" data-file="${id}" data-kind="image"><span class="pi">🖼</span>Open the photo</button></div>`;
+  }
+  if (m.startsWith("audio/")) return `<div class="att"><button class="mbtn" data-file="${id}" data-kind="audio"><span class="pi">▶</span>Play voice note</button></div>`;
+  if (m.startsWith("video/")) return `<div class="att"><button class="mbtn" data-file="${id}" data-kind="video"><span class="pi">▶</span>Play the video</button></div>`;
+  return `<div class="att"><a class="mbtn" href="https://drive.google.com/file/d/${id}/view" target="_blank" rel="noopener"><span class="pi">📎</span>${esc(l.fileName || "Open attachment")}</a></div>`;
+}
+function render() {
+  const q = $("#q").value.trim().toLowerCase();
+  const rows = letters.filter(l =>
+    (filter === "all" || (filter === "private" && l.visibility === "private") || (filter === "public" && l.visibility === "public" && !l.hidden) || (filter === "hidden" && l.hidden)) &&
+    (!q || (l.name + " " + l.message + " " + l.relation + " " + l.ig).toLowerCase().includes(q)));
+  $("#list").innerHTML = rows.length ? rows.map(l => {
+    const ig = l.ig ? `<a href="https://instagram.com/${encodeURIComponent(l.ig)}" target="_blank" rel="noopener">@${esc(l.ig)}</a>` : "";
+    return `<article class="pc ${l.visibility === "private" ? "private" : ""}">
+      <span class="badge">${l.visibility === "private" ? "✉️ Only for you" : "📌 On the wall"}</span>${l.hidden ? `<span class="badge hid">Hidden</span>` : ""}
+      <span class="when">${esc(fmt(l.t))}</span>
+      ${l.prompt ? `<div class="pr">${esc(l.prompt)}</div>` : ""}
+      ${l.message ? `<p class="msg">${esc(l.message)}</p>` : ""}
+      ${attHTML(l)}
+      <div class="from"><span class="n">— ${esc(l.name)}</span><span class="r">${[esc(l.relation), ig].filter(Boolean).join(" · ")}</span></div>
+    </article>`;
+  }).join("") : `<div class="empty">Nothing here yet.</div>`;
+}
+$("#lockForm").addEventListener("submit", e => { e.preventDefault(); key = $("#pass").value.trim(); if (key) openInbox(); });
+$("#logout").onclick = () => { try { localStorage.removeItem("ysg-admin"); } catch(e) {} key = ""; letters = []; $("#pass").value = ""; showLock(); };
+document.querySelectorAll(".tab").forEach(t => t.onclick = () => { document.querySelectorAll(".tab").forEach(x => x.setAttribute("aria-pressed","false")); t.setAttribute("aria-pressed","true"); filter = t.dataset.f; render(); });
+$("#q").addEventListener("input", render);
+$("#list").addEventListener("click", async e => {
+  const img = e.target.closest(".att img"); if (img) { $("#lbImg").src = img.dataset.full || img.src; $("#lb").classList.add("on"); return; }
+  const b = e.target.closest("[data-file]"); if (!b) return;
+  b.disabled = true; const label = b.lastChild; const orig = label.textContent; label.textContent = "Loading…";
+  try {
+    const j = await api({action: "file", id: b.dataset.file}); if (!j.ok) throw 0;
+    const bin = Uint8Array.from(atob(j.data), c => c.charCodeAt(0));
+    const url = URL.createObjectURL(new Blob([bin], {type: j.type}));
+    let el;
+    if (b.dataset.kind === "image") { el = document.createElement("img"); el.src = url; el.dataset.full = url; }
+    else { el = document.createElement(b.dataset.kind); el.controls = true; el.src = url; el.playsInline = true; }
+    b.replaceWith(el); if (el.play) el.play().catch(() => {});
+  } catch(x) {
+    b.disabled = false; label.textContent = orig;
+    const a = document.createElement("a"); a.href = "https://drive.google.com/file/d/" + b.dataset.file + "/view"; a.target = "_blank"; a.rel = "noopener"; a.textContent = "Open in Google Drive instead"; a.style.cssText = "display:block;margin-top:6px;font-size:14px;color:var(--red)";
+    if (!b.nextElementSibling) b.after(a);
+  }
+});
+$("#lb").onclick = () => $("#lb").classList.remove("on");
+if (key) openInbox(); else showLock();
+</script>
+</body>
+</html>
