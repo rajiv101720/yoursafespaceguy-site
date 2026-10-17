@@ -381,7 +381,6 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
   .item .bd{padding:20px 20px 22px}
   .item h3{font-size:28px}
   .items{gap:14px}
-  .pol{width:74vw;max-width:290px}
   .letter{padding:6px}
   .letter-in{padding:20px 16px 22px}
   .letter .mini-stamp{width:46px;top:14px;right:14px}
@@ -403,6 +402,13 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
   .mobile-cta{display:flex;position:fixed;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;justify-content:center;align-items:center;gap:10px;padding:16px 20px;border-radius:999px;background:var(--red);color:#fff;font-weight:600;text-decoration:none;box-shadow:0 14px 30px -10px rgba(147,28,34,.8);transform:translateY(140%);transition:transform .35s ease}
   .mobile-cta.show{transform:none}
 }
+.reel-2{padding-top:0;margin-top:-6px}
+.reel-2 .pol:nth-child(odd){transform:rotate(1.6deg) translateY(10px)}
+.reel-2 .pol:nth-child(even){transform:rotate(-1.4deg)}
+.reel{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:max(var(--gut),calc(50vw - 570px));padding-right:var(--gut);scroll-padding-left:max(var(--gut),calc(50vw - 570px))}
+.pol{width:clamp(200px,20vw,260px);margin:0}
+@media (max-width:600px){.pol{width:60vw;max-width:240px;padding:9px 9px 12px}.pol p{font-size:20px;margin-top:9px}.reel{gap:16px;padding-bottom:28px}}
+.reel .pol.pol:hover{transform:rotate(0) translateY(-4px) scale(1.02)}
 </style>
 </head>
 <body>
@@ -652,25 +658,43 @@ footer .fine{color:var(--muted);font-size:14px;margin-top:10px}
         <p class="kicker">Bits of 25</p>
         <h2 style="margin-top:12px">The year, in <em>polaroids.</em></h2>
       </div>
-      <p class="reel-hint">Drag or swipe <span aria-hidden="true">→</span></p>
+      <p class="reel-hint">32 little moments · drag or swipe <span aria-hidden="true">→</span></p>
     </div>
-    <div class="reel" id="reel" tabindex="0" aria-label="Photo gallery">
+    <div class="reel" id="reel" tabindex="0" aria-label="Photo gallery, row one">
       <figure class="pol"><div class="ph"><img src="img/mss-sign.jpg" alt="A handwritten cardboard sign that says My Safe Space for Everyone" loading="lazy"></div><p>Where it all started. A cardboard sign.</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-bbc-meme.jpg" alt="Rajiv on a video call while a camera crew films nearby" loading="lazy"></div><p>First in my bloodline to make it to BBC News</p></figure>
       <figure class="pol"><div class="ph"><img src="img/holi-selfie.jpg" alt="Rajiv covered in Holi colours holding a cup of thandai" loading="lazy"></div><p>Holi. Thandai. No regrets.</p></figure>
       <figure class="pol"><div class="ph"><img src="img/coldplay.jpg" alt="A Coldplay concert stage with a confirmed ticket on screen" loading="lazy"></div><p>Coldplay. Finally. 🥹</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-waterfall.jpg" alt="Two people standing in front of a big waterfall" loading="lazy"></div><p>Unlocked earth premium</p></figure>
       <figure class="pol"><div class="ph"><img src="img/marathon.jpg" alt="Rajiv running a race, both hands up in victory signs" loading="lazy"></div><p>Finished the run. Still smiling, somehow.</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-smile-night.jpg" alt="Rajiv smiling at night in a cream shirt" loading="lazy"></div><p>Just happy to be here</p></figure>
       <figure class="pol"><div class="ph"><img src="img/mss-everyone.jpg" alt="Rajiv in a painted T-shirt standing with auto drivers" loading="lazy"></div><p>A safe space for everyone. Yes, everyone.</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-river.jpg" alt="Someone lying in a shallow mountain river" loading="lazy"></div><p>This, and Kaavish on loop</p></figure>
       <figure class="pol"><div class="ph"><img src="img/snow-group.jpg" alt="A group in winter jackets sitting in the snow in front of a red temple" loading="lazy"></div><p>Chalo pahadon mein, with the MSS gang</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-back-to-delhi.jpg" alt="Rajiv taking a selfie at an airport" loading="lazy"></div><p>Back to Delhi. Back on the ground.</p></figure>
       <figure class="pol"><div class="ph"><img src="img/maahaul.jpg" alt="Rajiv dancing in a park with a crowd around him" loading="lazy"></div><p>Apka beta kya banata hai? Maahaul.</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-three-years.jpg" alt="Rajiv giving a friend a piggyback ride at a party" loading="lazy"></div><p>3 years of this</p></figure>
       <figure class="pol"><div class="ph"><img src="img/mss-bracelet.jpg" alt="A beaded bracelet that spells MSS" loading="lazy"></div><p>MSS, on a bracelet. Made by Vickey bhaiya.</p></figure>
-      <figure class="pol"><div class="ph"><img src="img/raahe-dilli.jpg" alt="A big group sitting together at night at a Delhi monument" loading="lazy"></div><p>Raahe Dilli, night out edition</p></figure>
-      <figure class="pol"><div class="ph"><img src="img/beach.jpg" alt="Rajiv's silhouette standing on a beach at sunset" loading="lazy"></div><p>No one asking me what I want to do with my life</p></figure>
-      <figure class="pol"><div class="ph"><img src="img/runclub.jpg" alt="A run club group posing with race bibs" loading="lazy"></div><p>Run club mornings</p></figure>
-      <figure class="pol"><div class="ph"><img src="img/mss-tshirt.jpg" alt="Someone drawing on Rajiv's T-shirt with a marker" loading="lazy"></div><p>Strangers drew on me. Best canvas I've had.</p></figure>
-      <figure class="pol"><div class="ph"><img src="img/holi-group.jpg" alt="A group of friends drenched in Holi colours" loading="lazy"></div><p>Colour everywhere. People I love.</p></figure>
-      <figure class="pol"><div class="ph"><img src="img/monument.jpg" alt="A community group sitting on the grass in front of an old Delhi monument" loading="lazy"></div><p>Sundays with the community</p></figure>
-      <figure class="pol"><div class="ph"><img src="img/tilak.jpg" alt="Rajiv with a tilak on his forehead at a festival at night" loading="lazy"></div><p>Festival nights</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-dal-roti.jpg" alt="Rajiv sitting on a step eating" loading="lazy"></div><p>Dal-roti, running by God's grace</p></figure>
       <figure class="pol"><div class="ph"><img src="img/stamp.jpg" alt="A postage stamp artwork with Rajiv's photo, sunflowers and the number 25" loading="lazy"></div><p>Me at 25. Now 26.</p></figure>
+    </div>
+    <div class="reel reel-2" id="reel2" tabindex="0" aria-label="Photo gallery, row two">
+      <figure class="pol"><div class="ph"><img src="img/p-students-won.jpg" alt="A crowd around a police truck after a protest" loading="lazy"></div><p>The protest ended. The students won.</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-protest-outfit.jpg" alt="Rajiv in sunglasses and an orange scarf" loading="lazy"></div><p>Dressed for the occasion</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/raahe-dilli.jpg" alt="A big group sitting together at night at a Delhi monument" loading="lazy"></div><p>Raahe Dilli, night out edition</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-save-assam.jpg" alt="Rajiv in a red shirt in Assam" loading="lazy"></div><p>Let's come together and save Assam</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/beach.jpg" alt="Rajiv's silhouette standing on a beach at sunset" loading="lazy"></div><p>No one asking me what I want to do with my life</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-chidiya-udd.jpg" alt="Rajiv and Meghnad on a video call" loading="lazy"></div><p>Chidiya Udd with Meghnad sir</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/runclub.jpg" alt="A run club group posing with race bibs" loading="lazy"></div><p>Run club mornings</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-mountain-selfie.jpg" alt="Rajiv in a pink jacket taking a selfie in the hills" loading="lazy"></div><p>The weather my soul ordered</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/mss-tshirt.jpg" alt="Someone drawing on Rajiv's T-shirt with a marker" loading="lazy"></div><p>Strangers drew on me. Best canvas I've had.</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-assam-gamosa.jpg" alt="Rajiv wearing a gamosa in a village in Assam" loading="lazy"></div><p>On the ground in Assam</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/holi-group.jpg" alt="A group of friends drenched in Holi colours" loading="lazy"></div><p>Colour everywhere. People I love.</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-trek.jpg" alt="A group of friends posing on a forest trek" loading="lazy"></div><p>Trek gang</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/monument.jpg" alt="A community group sitting on the grass in front of an old Delhi monument" loading="lazy"></div><p>Sundays with the community</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-serve.jpg" alt="Rajiv in a green shirt talking to the camera" loading="lazy"></div><p>Hope I did my best to serve</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/tilak.jpg" alt="Rajiv with a tilak on his forehead at a festival at night" loading="lazy"></div><p>Festival nights</p></figure>
+      <figure class="pol"><div class="ph"><img src="img/p-turning26.jpg" alt="Rajiv taking a selfie under trees" loading="lazy"></div><p>Two days to 26</p></figure>
     </div>
   </div>
 </section>
@@ -839,12 +863,13 @@ const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting
 document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 
 /* drag-scroll gallery */
-(() => {
-  const r = $("#reel"); let down = false, sx = 0, sl = 0, moved = false;
-  r.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") return; down = true; moved = false; sx = e.clientX; sl = r.scrollLeft; r.classList.add("drag"); });
-  addEventListener("pointermove", e => { if (!down) return; const dx = e.clientX - sx; if (Math.abs(dx) > 3) moved = true; r.scrollLeft = sl - dx; });
+document.querySelectorAll(".reel").forEach(r => {
+  let down = false, sx = 0, sl = 0;
+  r.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") return; down = true; sx = e.clientX; sl = r.scrollLeft; r.classList.add("drag"); });
+  addEventListener("pointermove", e => { if (!down) return; r.scrollLeft = sl - (e.clientX - sx); });
   addEventListener("pointerup", () => { down = false; r.classList.remove("drag"); });
-})();
+});
+const r2 = document.getElementById("reel2"); if (r2) requestAnimationFrame(() => { r2.scrollLeft = 120; });
 
 /* prompts + relations */
 const PROMPTS = [
